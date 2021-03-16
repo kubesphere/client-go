@@ -255,6 +255,10 @@
 			"Rev": "v0.19.5"
 		},
 		{
+			"ImportPath": "github.com/go-resty/resty/v2",
+			"Rev": "v2.5.0"
+		},
+		{
 			"ImportPath": "github.com/go-stack/stack",
 			"Rev": "v1.8.0"
 		},
@@ -628,7 +632,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/net",
-			"Rev": "59133d7f0dd7"
+			"Rev": "6772e930b67b"
 		},
 		{
 			"ImportPath": "golang.org/x/oauth2",
@@ -640,7 +644,11 @@
 		},
 		{
 			"ImportPath": "golang.org/x/sys",
-			"Rev": "85ca7c5b95cd"
+			"Rev": "f84b799fce68"
+		},
+		{
+			"ImportPath": "golang.org/x/term",
+			"Rev": "7de9c90e9dd1"
 		},
 		{
 			"ImportPath": "golang.org/x/text",
