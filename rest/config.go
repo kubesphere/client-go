@@ -19,7 +19,6 @@ package rest
 import (
 	"context"
 	"fmt"
-
 	"net"
 	"net/http"
 	"net/url"
@@ -35,6 +34,7 @@ import (
 	"k8s.io/client-go/pkg/version"
 	"k8s.io/client-go/transport"
 	"k8s.io/client-go/util/flowcontrol"
+
 	"kubesphere.io/client-go/kubesphere/scheme"
 )
 
@@ -468,6 +468,38 @@ func DefaultKubeSphereUserAgent() string {
 		gruntime.GOOS,
 		gruntime.GOARCH,
 		adjustCommit(version.Get().GitCommit))
+}
+
+func InClusterConfig() (*Config, error) {
+	const (
+		tokenFile  = "/var/run/secrets/kubesphere.io/serviceaccount/token"
+		rootCAFile = "/var/run/secrets/kubesphere.io/serviceaccount/ca.crt"
+	)
+	tls := false
+	if _, err := os.Stat(rootCAFile); err == nil {
+		tls = true
+	}
+
+	host := "ks-apiserver.kubesphere-system"
+	scheme := "http"
+	port := "80"
+	config := &Config{}
+	if tls {
+		scheme = "https"
+		port = "443"
+		config.TLSClientConfig = TLSClientConfig{
+			CAFile: rootCAFile,
+		}
+	}
+
+	token, err := os.ReadFile(tokenFile)
+	if err != nil {
+		return nil, err
+	}
+	config.Host = fmt.Sprintf("%s://%s", scheme, net.JoinHostPort(host, port))
+	config.BearerToken = string(token)
+	config.BearerTokenFile = tokenFile
+	return config, nil
 }
 
 // IsConfigTransportTLS returns true if and only if the provided

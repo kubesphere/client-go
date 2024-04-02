@@ -23,7 +23,6 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/serializer"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	k8sscheme "k8s.io/client-go/kubernetes/scheme"
-
 	appv2 "kubesphere.io/api/application/v2"
 	clusterv1alpha1 "kubesphere.io/api/cluster/v1alpha1"
 	corev1alpha1 "kubesphere.io/api/core/v1alpha1"
@@ -34,8 +33,8 @@ import (
 	quotav1alpha2 "kubesphere.io/api/quota/v1alpha2"
 	storagev1alpha1 "kubesphere.io/api/storage/v1alpha1"
 	telemetryv1alpha1 "kubesphere.io/api/telemetry/v1alpha1"
-	tenantv1alpha1 "kubesphere.io/api/tenant/v1alpha1"
-	tenantv1alpha2 "kubesphere.io/api/tenant/v1alpha2"
+	tenantv1beta1 "kubesphere.io/api/tenant/v1beta1"
+	appv1beta1 "sigs.k8s.io/application/api/v1beta1"
 )
 
 var Scheme = runtime.NewScheme()
@@ -49,11 +48,11 @@ var localSchemeBuilder = runtime.SchemeBuilder{
 	iamv1beta1.AddToScheme,
 	quotav1alpha2.AddToScheme,
 	storagev1alpha1.AddToScheme,
-	tenantv1alpha1.AddToScheme,
-	tenantv1alpha2.AddToScheme,
+	tenantv1beta1.AddToScheme,
 	gatewayv1alpha2.AddToScheme,
 	marketplacev1alpha1.AddToScheme,
 	telemetryv1alpha1.AddToScheme,
+	appv1beta1.AddToScheme,
 }
 
 var AddToScheme = localSchemeBuilder.AddToScheme
