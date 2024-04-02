@@ -14,7 +14,7 @@ require (
 	k8s.io/client-go v0.29.2
 	k8s.io/klog/v2 v2.110.1
 	k8s.io/utils v0.0.0-20240102154912-e7106e64919e
-	kubesphere.io/api v0.0.0
+	kubesphere.io/api v0.0.0-20240402111826-fc7ea9980e4c
 	sigs.k8s.io/application v0.8.3
 )
 
@@ -50,19 +50,4 @@ require (
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
 	sigs.k8s.io/yaml v1.4.0 // indirect
-)
-
-replace (
-	github.com/go-openapi/errors => github.com/go-openapi/errors v0.20.3
-	go.mongodb.org/mongo-driver => go.mongodb.org/mongo-driver v1.11.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc => go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.23.0
-	golang.org/x/crypto => golang.org/x/crypto v0.5.0
-	golang.org/x/net => golang.org/x/net v0.17.0
-	golang.org/x/oauth2 => golang.org/x/oauth2 v0.4.0
-	golang.org/x/sync => golang.org/x/sync v0.1.0
-	golang.org/x/sys => golang.org/x/sys v0.5.0
-	golang.org/x/text => golang.org/x/text v0.7.0
-	golang.org/x/tools => golang.org/x/tools v0.6.0
-	kubesphere.io/api => ../api
-	kubesphere.io/client-go => ../client-go
 )
