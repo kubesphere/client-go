@@ -4,52 +4,120 @@ The KubeSphere client-go Project is a rest-client of go libraries for communicat
 
 # How to use it
 
-1. Import client-go packages:
+## 1. Get client-go packages
+
+```shell
+go get kubesphere.io/client-go@59e48ec
+```
+
 ```golang
 import (
 	"kubesphere.io/client-go/rest"
-	"kubesphere.io/client-go/client"
-	"kubesphere.io/client-go/client/generic"
 )
 ```
-2. Create a generic client instance:
+## 2. Create a generic client instance
+
+### Option 1. Authenticate by KubeSphere User
 ```golang
-    var client client.Client
-	config := &rest.Config{
-		Host:     "127.0.0.1:9090",
-		Username: "admin",
-		Password: "P@88w0rd",
-	}
-	client = generic.NewForConfigOrDie(config, client.Options{Scheme: f.Scheme})
+var client client.Client
+config := &rest.Config{
+    Host:     "ks-apiserver.kubesphere-system:9090",
+    Username: "admin",
+    Password: "P@88w0rd",
+}
+client, err = rest.RESTClientFor(config)
+if err != nil {
+    return err
+}
+
 ```
-> generic.NewForConfigOrDie returns a client.Client that reads and writes from/to an KubeSphere API server. 
+
+### Option 2. Authenticate by KubeSphere ServiceAccount
+
+At first, You need to create a KubeSphere ServiceAccount.
+
+```yaml
+apiVersion: kubesphere.io/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: test-sa
+  namespace: test
+```
+
+> You should bind roles to KubeSphere ServiceAccount before using it.
+
+Mounting KubeSphere ServiceAccount to your workloads.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-workload
+  namespace: test
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test-workload
+  template:
+    metadata:
+      labels:
+        app: test-workload
+      annotations:
+        ## using annotation to mount KubeSphere ServiceAccount test-sa
+        kubesphere.io/serviceaccount-name: test-sa
+    spec:
+      containers:
+      - name: test-workload
+        image: test-workload:latest
+        ports:
+        - containerPort: 80
+```
+
+Once the KubeSphere ServiceAccount is mounted successfully, you can use it in the pod belongs to the `test-workload`.
+
+Create RESTClient with KubeSphere ServiceAccount. 
+```golang
+import (
+	"kubesphere.io/client-go/rest"
+)
+```
+
+```golang
+config, err := rest.InClusterConfig()
+if err != nil {
+    return err
+}
+client, err := rest.RESTClientFor(config)
+if err != nil {
+    return err
+}
+```
+
+> rest.RESTClientFor returns a *rest.RESTClient that reads and writes from/to an KubeSphere API server. 
 
 > It's only compatible with Kubernetes-like API objects.
 
-3. KubeSphere API server provided a proxy to Kubernetes API Server. The client can read and write those Kubernetes native objects with the client directly.
+## 3. Using RESTClient
 
 ```golang
-	deploy := &appsv1.Deployment{}
-	client.Get(context.TODO(), client.ObjectKey{Namespace: "kubesphere-system", Name: "ks-apiserver"}, deploy)
-```
+resp := client.Get().
+    Group("tenant.kubesphere.io").
+    Version("v1beta1").
+    Resource("workspaces").
+    Do(context.TODO())
 
-4. URLOptions and WorkspaceOptions can be provided to read and write Kubernetes likely Object that provided by KubeSphere API.
-```golang
-	ns := &corev1.Namespace{
-		ObjectMeta: metav1.ObjectMeta{
-			Name: "ks-test",
-			Labels: map[string]string{
-				constants.WorkspaceLabelKey: "Workspace",
-			},
-		},
-	}
+list := &v1beta1.WorkspaceList{}
+if resp.Error() != nil {
+    return resp.Error()
+}
 
-	opts := &client.URLOptions{
-		Group:   "tenant.kubesphere.io",
-		Version: "v1alpha2",
-	}
-
-	err := f.GenericClient(f.BaseName).Create(context.TODO(), ns, opts, &client.WorkspaceOptions{Name: "Workspace"})
+err := resp.Into(list)
+if err != nil {
+    return err
+}
 ```
 
 The KubeSphere API Architecture can be found at https://kubesphere.io/docs/reference/api-docs/
