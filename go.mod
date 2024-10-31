@@ -14,7 +14,7 @@ require (
 	k8s.io/client-go v0.29.2
 	k8s.io/klog/v2 v2.110.1
 	k8s.io/utils v0.0.0-20240102154912-e7106e64919e
-	kubesphere.io/api v0.0.0
+	kubesphere.io/api v0.0.0-20240906030552-a1642087a635
 	sigs.k8s.io/application v0.8.3
 )
 
@@ -62,6 +62,4 @@ replace (
 	golang.org/x/sys => golang.org/x/sys v0.5.0
 	golang.org/x/text => golang.org/x/text v0.7.0
 	golang.org/x/tools => golang.org/x/tools v0.6.0
-	kubesphere.io/api => ../api
-	kubesphere.io/client-go => ../client-go
 )
