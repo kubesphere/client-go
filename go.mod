@@ -2,9 +2,7 @@
 
 module kubesphere.io/client-go
 
-go 1.22.4
-
-toolchain go1.22.8
+go 1.22.11
 
 require (
 	github.com/google/go-cmp v0.6.0
@@ -16,7 +14,7 @@ require (
 	k8s.io/client-go v0.31.2
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/utils v0.0.0-20240711033017-18e509b52bc8
-	kubesphere.io/api v0.0.0-20241106062628-55075a884af9
+	kubesphere.io/api v0.0.0-20250208022800-f5933f3a03c4
 	sigs.k8s.io/application v0.8.3
 )
 

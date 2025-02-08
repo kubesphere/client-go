@@ -543,8 +543,8 @@ k8s.io/utils v0.0.0-20190801114015-581e00157fb1/go.mod h1:sZAwmy6armz5eXlNoLmJcl
 k8s.io/utils v0.0.0-20191114184206-e782cd3c129f/go.mod h1:sZAwmy6armz5eXlNoLmJcl4F1QuKu7sr+mFQ0byX7Ew=
 k8s.io/utils v0.0.0-20240711033017-18e509b52bc8 h1:pUdcCO1Lk/tbT5ztQWOBi5HBgbBP1J8+AsQnQCKsi8A=
 k8s.io/utils v0.0.0-20240711033017-18e509b52bc8/go.mod h1:OLgZIPagt7ERELqWJFomSt595RzquPNLL48iOWgYOg0=
-kubesphere.io/api v0.0.0-20241106062628-55075a884af9 h1:p19JzzVgF1cDWipuwSptj2xgyI7om4xHMPbm1C21jRo=
-kubesphere.io/api v0.0.0-20241106062628-55075a884af9/go.mod h1:CclU5WfJxiJ7PaGe1biQ2xm2zdVOn4LoTPL5XVrGqSo=
+kubesphere.io/api v0.0.0-20250208022800-f5933f3a03c4 h1:h8RqyV69vZBPiJkzwZv30hnUrSUbhKjeKLgv49fIXrY=
+kubesphere.io/api v0.0.0-20250208022800-f5933f3a03c4/go.mod h1:QIPLzc3b2yImvPZcseQLCxUgE4HXIGbf56l4qtAEUd8=
 modernc.org/cc v1.0.0/go.mod h1:1Sk4//wdnYJiUIxnW8ddKpaOJCF37yAdqYnkxUpaYxw=
 modernc.org/golex v1.0.0/go.mod h1:b/QX9oBD/LhixY6NDh+IdGv17hgB+51fET1i2kPSmvk=
 modernc.org/mathutil v1.0.0/go.mod h1:wU0vUrJsVWBZ4P6e7xtFJEhFSNsfRLJ8H458uRjg03k=
