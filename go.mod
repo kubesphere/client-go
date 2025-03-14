@@ -14,7 +14,7 @@ require (
 	k8s.io/client-go v0.31.2
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/utils v0.0.0-20240711033017-18e509b52bc8
-	kubesphere.io/api v0.0.0-20250314102850-8744d4cc8e03
+	kubesphere.io/api v0.0.0-20250314102851-9de307fafaf0
 	sigs.k8s.io/application v0.8.3
 )
 
@@ -55,7 +55,6 @@ require (
 )
 
 replace (
-	github.com/stretchr/testify => github.com/stretchr/testify v1.9.0
 	golang.org/x/oauth2 => golang.org/x/oauth2 v0.21.0
 	golang.org/x/sync => golang.org/x/sync v0.1.0
 	golang.org/x/sys => golang.org/x/sys v0.26.0
