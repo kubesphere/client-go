@@ -16,7 +16,7 @@ require (
 	k8s.io/client-go v0.31.2
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/utils v0.0.0-20240711033017-18e509b52bc8
-	kubesphere.io/api v0.0.0-20250319102946-56d3f6e7f446
+	kubesphere.io/api v0.0.0-20250324022925-a500956374e5
 	sigs.k8s.io/application v0.8.3
 )
 
@@ -62,5 +62,4 @@ replace (
 	golang.org/x/sync => golang.org/x/sync v0.1.0
 	golang.org/x/sys => golang.org/x/sys v0.26.0
 	golang.org/x/text => golang.org/x/text v0.19.0
-	google.golang.org/protobuf => google.golang.org/protobuf v1.34.2
 )
